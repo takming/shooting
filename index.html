@@ -1,76 +1,109 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <title>Shooting by takming</title>
+    <title>Shoot</title>
+	<link href="/css/shoot.css" rel="stylesheet" media="screen">
+	<script src="/js/jquery-1.9.1.js"></script>
+	<!--script src="js/jquery.timer.js"></script-->
+
   </head>
 
-  <body>
-    <div id="container">
-      <div class="inner">
+    <body>
+	<div class="container">
+		
 
-        <header>
-          <h1>Shooting</h1>
-          <h2>A simple shooting game</h2>
-        </header>
+    </div> <!-- /container -->
 
-        <section id="downloads" class="clearfix">
-          <a href="https://github.com/takming/shooting/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
-          <a href="https://github.com/takming/shooting/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
-          <a href="https://github.com/takming/shooting" id="view-on-github" class="button"><span>View on GitHub</span></a>
-        </section>
+	<script type="text/javascript">
 
-        <hr>
+	function counter(mark){
+		
+		this.mark= mark;
+		
+		this.add= add;
+		function add(){
+			this.mark+=1;
+		}
+	}	
 
-        <section id="main_content">
-          <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+	
+	function disc(d, pos_l, pos_t,  color){
+		
+		d.css("top", pos_t);
+		d.css("left", pos_l);
+		d.css("background", color); 
+		
+		
+		this.setdisc=setdisc;
+		function setdisc( pos_t, pos_l, color){
+			d.css("top", pos_t);
+			d.css("left", pos_l);
+			d.css("background", color); 
+		}
+		
+		this.fire=fire;
+		function fire(path_l, path_t,t, c){
+			d.css("display", "block");
+			d.animate(
+				{
+					left: 	path_l, 
+					top:	path_t, 
+					height:"+=20", 
+					width:"+=20"
+				},
+				(t)*1000, 
+				"linear",
+				function(){
+					d.css("display", "none");
+					d.attr("style", "");
+					}
+				);
+				
+			d.click(function(){			
+				d.css("display", "none");
+				c.add();
+			})
+			
+		}		
+	}
+	
+	$(document).ready(function(){
+		var t=2;
+		var s1=0;
+		var s2 = 2;
+		var s3 = 3;
+		var s4 = 4;
+		var s5 = 5;
+		var timer;
+		
+		var c= new counter(0);
+		$(".container").append('<div id ="disc1" class=" disc"></div>');
+		$(".container").append('<div id ="disc2" class=" disc"></div>');
+		$(".container").append('<div id ="disc3" class=" disc"></div>');
+		$(".container").append('<div id ="disc4" class=" disc"></div>');
+		$(".container").append('<div id ="disc5" class=" disc"></div>');
+		var div1= $('#disc1');
+		var div2= $('#disc2');
+		var div3= $('#disc3');
+		var div4= $('#disc4');
+		var div5= $('#disc5');
+		var d1= new disc(div1,  "300px", "200px", "red");
+		var d2= new disc(div2,  "500px", "200px", "blue");
+		var d3= new disc(div3,  "400px", "200px", "green");
+		var d4= new disc(div4,  "400px", "200px", "yellow");
+		var d5= new disc(div5,  "400px", "200px", "black");
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
-
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
-
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
-
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
-
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
-
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-        </section>
-
-        <footer>
-          Shooting is maintained by <a href="https://github.com/takming">takming</a><br>
-          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
-        </footer>
-
-        
-      </div>
-    </div>
+		timer = setTimeout( function () {d1.fire("-=500", "-=100",  t, c )}, s1*1000);
+		timer = setTimeout( function () {d2.fire("+=400", "-=100",  t, c )}, s2*1000);
+		timer = setTimeout( function () {d3.fire("+=200", "-=300",  t, c )}, s3*1000);
+		timer = setTimeout( function () {d4.fire( "-=200","-=300", t, c )}, s4*1000);
+		timer = setTimeout( function () {d5.fire("-=200", "-=300", t, c )}, s5*1000);
+		timer = setTimeout( function () {alert(c.mark)}, 7000);
+		
+		
+	})
+		
+		
+	</script>
   </body>
 </html>
