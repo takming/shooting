@@ -1,0 +1,35 @@
+.container{
+	width:800px;
+	height:600px;
+	border:1px solid black;
+	margin:20px auto ;
+	overflow:hidden;
+	position:relative
+}
+
+.disc{
+	width: 40px;
+	height: 20px;
+	position:absolute;
+	cursor:pointer;
+	display:none;
+}
+
+
+
+/*
+@-webkit-keyframes come
+{
+   from {  -webkit-transform: scale(1.0)    }
+   to   {-webkit-transform: scale(2.0);}
+}
+
+@keyframes come
+{
+   from {transform: scale(1.0)   }
+   to   { transform: scale(1.5);}
+}
+*/
+
+
+
